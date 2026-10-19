@@ -9,9 +9,29 @@
 - [x] 建立專案資料夾並初始化 Git（main）。
 - [x] 整理學習路線、第一課與 demo 規格。
 - [x] 建立 [GitHub 公開 repository](https://github.com/swenbao/mcp-lab) 並完成首次 push。
-- [ ] 實作第一個可連線的 MCP Server 與測試 client。
+- [x] 實作第一個可連線的 MCP Server 與測試 client，並完成程式驗證。
+- [ ] 使用者親手執行、修改一筆資料，並解釋觀察結果。
 
-目前是教學與專案規劃階段，尚未安裝 SDK 或實作 server。
+目前已可執行本機 demo。程式驗證完成不代表使用者已完成學習；下一步從第二課的操作開始。
+
+## 先跑一次
+
+這台電腦的環境已準備好：
+
+```bash
+cd /home/swenbao/桌面/mcp-lab
+.venv/bin/python client.py tool
+```
+
+會先看到 server 提供的工具名稱、用途和輸入格式，再看到：
+
+```text
+Server 回覆：tool：可以被呼叫的功能；呼叫時傳入參數，執行後取得結果。
+```
+
+client 會自行啟動、關閉本機 server。沒有使用語言模型或外部 API。
+
+若是剛下載此 repository，在專案根目錄先執行 `python3 scripts/setup_env.py`；需要 Python 3.10 以上與網路。本次實測 Python 3.14.4、官方 SDK `mcp==2.3.0`、協議 `2026-07-28`，詳細版本與重建方式見[環境紀錄](docs/environment.md)。
 
 ## 從這裡開始
 
@@ -20,6 +40,7 @@
 3. [Demo 規格](docs/demo-plan.md)：MCP 術語小幫手。
 4. [學習紀錄](notes/progress.md)：保留每次完成的內容、問題與下一步。
 5. [GitHub 備份方式](docs/github-backup.md)：每個完成的段落都 commit、push。
+6. [第二課：找工具、用工具](docs/02-first-tool.md)：執行 demo，再親手改一筆資料。
 
 ## 第一個成果
 

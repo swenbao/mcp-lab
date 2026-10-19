@@ -22,7 +22,7 @@
 
 問題：client 怎麼知道 server 有哪些功能？又怎麼呼叫？
 
-活動：確認 Python 與官方 SDK 版本、建立虛擬環境、鎖定依賴；實作 `lookup_term`，再寫一個最小 Python client，透過 stdio 列出工具並查詢 `tool`。
+活動：依[第二課](02-first-tool.md)執行最小範例、修改一筆資料。環境已確認 Python 與官方 SDK 版本、建立虛擬環境並鎖定依賴；範例提供 `lookup_term` 與最小 Python client，透過 stdio 列出工具並查詢 `tool`。
 
 觀察：工具名稱、description、inputSchema、輸入參數及回傳內容；分清「直接呼叫 Python 函式」與「經過 MCP 跨程序呼叫」。
 
