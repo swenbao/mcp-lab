@@ -8,7 +8,7 @@
 
 - [x] 建立專案資料夾並初始化 Git（main）。
 - [x] 整理學習路線、第一課與 demo 規格。
-- [ ] 建立 GitHub 公開 repository 並完成首次 push。
+- [x] 建立 [GitHub 公開 repository](https://github.com/swenbao/mcp-lab) 並完成首次 push。
 - [ ] 實作第一個可連線的 MCP Server 與測試 client。
 
 目前是教學與專案規劃階段，尚未安裝 SDK 或實作 server。

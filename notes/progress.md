@@ -18,7 +18,10 @@
 
 ### 備份狀態
 
-GitHub 公開 repository 與首次 push 尚待完成。
+- 已建立公開 repository：https://github.com/swenbao/mcp-lab 。
+- 初始化文件已完成首次 commit 與 push。
+- 備份狀態更新另作一次 commit、push，完成後核對本機 HEAD 與遠端 main。
+- 文件的本機 Markdown 連結檢查與 Git 空白檢查通過。
 
 ### 尚待討論／驗證
 
