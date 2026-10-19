@@ -59,3 +59,12 @@
 - [MCP 官方架構說明](https://modelcontextprotocol.io/docs/2026-07-28/learn/architecture)
 - [MCP 工具規範](https://modelcontextprotocol.io/specification/2026-07-28/server/tools)
 - [VS Code 新增 MCP server 說明](https://code.visualstudio.com/docs/agent-customization/mcp-servers)
+
+## 2026-10-20｜步驟 2a：準備第一個實驗的環境
+
+- 使用者已用自己的話正確回答：換一個支援 MCP 的應用，不必重寫 Google Drive API 接法，因為這段由 server 處理。這是對 client/server 分工的理解證據；不等於所有第一課概念都已驗證。
+- 已重新閱讀學習路線與 demo 規格，決定先讓獨立 client 列工具、呼叫術語工具，再由使用者做小修改。
+- 查核 PyPI 實際發布版本並安裝 `mcp==2.3.0`；本機 Python 3.14.4，SDK 回報最新支援協議為 `2026-07-28`。
+- 本機缺少 pip 與 ensurepip；已在專案 `.venv` 安裝 pip 26.2.1 與 SDK，沒有修改系統 Python。新增重建腳本與環境紀錄，完整鎖定執行依賴版本。
+- 驗證：SDK 匯入、版本與 API 簽名確認成功；`pip check` 通過。另在暫存目錄從零執行安裝腳本，確認缺少 pip 時仍能依鎖定清單重建、匯入 SDK，且依賴檢查通過。環境準備完成，尚未宣稱使用者會操作工具或已完成實驗。
+- 下一步：寫出最小 stdio server/client，觀察工具清單與呼叫結果。
