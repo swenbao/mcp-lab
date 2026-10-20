@@ -165,3 +165,10 @@
 - 已安裝並鎖定 OpenAI SDK 3.35.1、python-dotenv 1.2.4；既有 MCP 2.3.0 與其他原依賴未升級，`pip check` 通過。
 - 測試使用真實本機 HTTP MCP server 與模擬 OpenAI HTTP 回覆，通過工具定義轉換、模型參數轉送、真實 banana 查詢、call ID 與工具結果回傳、最終答案；直接回答分支確認零工具呼叫，未知工具名稱確認拒絕執行。沒有讀取 `.env` 或呼叫真實 OpenAI API；測試 server 已清理。
 - 尚未確認真實模型決策或使用者理解；下一步由使用者填 key、啟動 HTTP server，再比較查術語與一般招呼的真實輸出。
+
+## 2026-10-20｜加入簡短 server log
+
+- 依使用者要求，`lookup_term` 每次只印兩行：收到查詢詞，以及完成後找到／查無資料。
+- 使用 stderr 並立即 flush，stdio 與 HTTP 共用同一份工具；不開啟 SDK 的大量除錯訊息。
+- 重跑既有 stdio client，找到 banana 與查無 unknown_demo 都通過；確認 log 只出現在 stderr、MCP 結果正常回傳。
+- HTTP server 若已運行，需要停止後重新啟動才載入新增 log。未讀取 `.env`，未呼叫 OpenAI API。

@@ -1,5 +1,7 @@
 """提供一個查術語的 MCP 工具。"""
 
+import sys
+
 from mcp.server import MCPServer
 
 
@@ -19,9 +21,13 @@ TERMS = {
 @mcp.tool()
 def lookup_term(term: str) -> str:
     """查詢 MCP 術語的繁體中文解釋，輸入一個英文術語。"""
+    # Log 寫到 stderr，避免干擾 stdio 的 MCP 訊息。
+    print(f"[server] 收到查詢：{term!r}", file=sys.stderr, flush=True)
     key = term.strip().lower()
     if key in TERMS:
+        print("[server] 完成：找到資料", file=sys.stderr, flush=True)
         return f"{key}：{TERMS[key]}"
+    print("[server] 完成：查無資料", file=sys.stderr, flush=True)
     return f"找不到術語「{term}」。可查詢：{', '.join(TERMS)}"
 
 
