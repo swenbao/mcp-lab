@@ -11,9 +11,10 @@
 - [x] 建立 [GitHub 公開 repository](https://github.com/swenbao/mcp-lab) 並完成首次 push。
 - [x] 實作第一個可連線的 MCP Server 與測試 client，並完成程式驗證。
 - [x] 使用者親手執行、修改一筆資料，並解釋觀察結果。
-- [ ] 釐清 SDK 如何登記工具，以及 client 如何取得工具描述。
+- [x] 討論 SDK 如何登記工具，以及 client 如何取得工具描述。
+- [ ] 將 server 接到 Codex，觀察一次實際的模型工具呼叫。
 
-目前已可執行本機 demo。使用者已完成第二課新增資料的操作，並正確說明新增資料和新增工具的差別；接著釐清工具登記與工具清單的來源。
+目前已可執行本機 demo。使用者已完成新增資料與工具描述的討論，下一步[接到 Codex](docs/04-use-in-codex.md)，觀察模型如何使用工具。
 
 ## 先跑一次
 
@@ -42,6 +43,7 @@ client 會自行啟動、關閉本機 server。沒有使用語言模型或外部
 4. [學習紀錄](notes/progress.md)：保留每次完成的內容、問題與下一步。
 5. [GitHub 備份方式](docs/github-backup.md)：每個完成的段落都 commit、push。
 6. [第二課：找工具、用工具](docs/02-first-tool.md)：執行 demo，再親手改一筆資料。
+7. [接到 Codex：讓模型選工具](docs/04-use-in-codex.md)：登記本機 server，檢查實際工具呼叫。
 
 ## 第一個成果
 

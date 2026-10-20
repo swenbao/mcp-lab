@@ -117,3 +117,13 @@
 - 函式實作與 `TERMS` 資料留在 server；呼叫時 client 傳工具名稱和參數，server 找到已登記的函式並執行，再回傳結果。Python decorator 是 SDK 的便利寫法，並非 MCP 協議要求的語法。
 - 本次僅閱讀程式、更新學習紀錄與 README，沒有修改範例行為。上述工具發現機制仍待使用者確認理解；下一個最小觀察可由使用者修改工具 docstring，重跑後比較「用途」欄位，再新增第二個工具。
 - 來源：[官方 Python SDK First steps](https://py.sdk.modelcontextprotocol.io/get-started/first-steps/)，以及本機 SDK 的 `MCPServer.tool`、`ToolManager.add_tool`、`Tool.from_function`、`MCPServer.list_tools` 與 `Client.list_tools`。
+
+## 2026-10-20｜步驟 4a：準備接入 Codex 的操作
+
+- 使用者正確指出修改 docstring 會改變「用途」欄位，並說明 host 會把工具描述提供給模型，使模型能提出工具呼叫；要求往下一步，不再反覆確認已理解的細節。
+- 教學節奏調整：跳到真實 AI host 的工具呼叫實驗，先用 Codex CLI；完整 JSON-RPC 格式與第二個工具留待後續需要時學習。
+- 已使用 OpenAI Docs 技能核對官方 MCP 設定文件，本機 Codex CLI 為 0.162.1，已確認 `mcp add` / `mcp get` 語法；目前未登記 `mcp_lab`。
+- 接入步驟已寫成 `docs/04-use-in-codex.md`：使用者登記 stdio 啟動設定，啟動新的 Codex CLI，檢查 `/mcp`，再要求透過 `lookup_term` 查 banana。
+- 相容性檢查：既有 SDK 2.3.0 server 在另一條獨立連線中通過 `2025-11-25` 的 initialize → initialized → tools/list → tools/call → 正常退出；沒有混用不同協議的生命週期，也未變更依賴。
+- 尚未變更使用者層級 Codex 設定或啟動模型測試。真正的 host 連線與模型工具呼叫，需使用者操作後依紀錄確認，不能把設定存在或答案正確當作工具成功的證據。
+- 下一步：由使用者執行登記指令並在新的 Codex CLI 工作階段測試，貼回實際工具呼叫或連線錯誤。
