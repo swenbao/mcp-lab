@@ -32,8 +32,9 @@ async def ask(question: str, mcp: Client, llm: AsyncOpenAI, model: str) -> None:
         "parameters": {**tool.input_schema, "additionalProperties": False},
         "strict": True,
     }]
-    print(f"從 MCP 取得工具：{tool.name}")
-    print(f"模型：{model}；問題：{question}")
+    print(f"\n從 MCP 取得工具：{tool.name}")
+    print(f"模型：{model}")
+    print(f"\n問題：\n{question}")
     history = [{"role": "user", "content": question}]
     options = dict(
         model=model, instructions=INSTRUCTIONS, tools=tools,
@@ -52,12 +53,12 @@ async def ask(question: str, mcp: Client, llm: AsyncOpenAI, model: str) -> None:
         call = calls[0]
         arguments = json.loads(call.arguments)
         print(f"\nLLM 選擇工具：{call.name}")
-        print(f"LLM 產生參數：{json.dumps(arguments, ensure_ascii=False)}")
+        print(f"LLM 產生參數：\n{json.dumps(arguments, ensure_ascii=False, indent=2)}")
 
         # 3. 真正發 MCP 請求的是 client；function calling 本身不會執行工具。
         result = await mcp.call_tool(call.name, arguments)
         text = "\n".join(block.text for block in result.content if isinstance(block, TextContent))
-        print(f"MCP server 回覆：{text}")
+        print(f"\nMCP server 回覆：\n{text}")
 
         # 4. 保留模型輸出（包含 reasoning 等項目），再補上對應的工具結果。
         history.extend(response.output)
@@ -71,7 +72,7 @@ async def ask(question: str, mcp: Client, llm: AsyncOpenAI, model: str) -> None:
             raise RuntimeError(f"最終回覆尚未完成（{response.status}），請調整模型或輸出上限。")
     else:
         print("\nLLM 選擇直接回答，沒有呼叫 MCP 工具。")
-    print(f"\nLLM 最終回答：{response.output_text or '（沒有文字回覆）'}")
+    print(f"\nLLM 最終回答：\n{response.output_text or '（沒有文字回覆）'}\n")
 
 
 async def main(question: str, url: str, key: str, model: str) -> None:

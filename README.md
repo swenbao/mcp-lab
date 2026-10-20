@@ -32,7 +32,8 @@ cd /home/swenbao/桌面/mcp-lab
 會先看到 server 提供的工具名稱、用途和輸入格式，再看到：
 
 ```text
-Server 回覆：tool：可以被呼叫的功能；呼叫時傳入參數，執行後取得結果。
+Server 回覆：
+tool：可以被呼叫的功能；呼叫時傳入參數，執行後取得結果。
 ```
 
 client 會自行啟動、關閉本機 server。沒有使用語言模型或外部 API。

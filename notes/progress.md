@@ -172,3 +172,10 @@
 - 使用 stderr 並立即 flush，stdio 與 HTTP 共用同一份工具；不開啟 SDK 的大量除錯訊息。
 - 重跑既有 stdio client，找到 banana 與查無 unknown_demo 都通過；確認 log 只出現在 stderr、MCP 結果正常回傳。
 - HTTP server 若已運行，需要停止後重新啟動才載入新增 log。未讀取 `.env`，未呼叫 OpenAI API。
+
+## 2026-10-20｜改善終端機輸出分段
+
+- 依使用者要求，在一般 client、LLM client 與 HTTP server 的顯示訊息間加入適量空行；參數格式 JSON 使用縮排，工具結果與最終回答另起一行。
+- Server 每次查詢的兩行 log 後加一個空行，方便區分連續請求；log 仍寫到 stderr，MCP 訊息與回傳資料未變更。
+- 已重跑既有 stdio client 查 banana，確認分段輸出與 MCP 回覆正常；四個 Python 檔案語法檢查通過。未讀取 `.env` 或呼叫 OpenAI API。
+- 同步更新教材中的輸出示例。既有 HTTP server 需重啟後才會載入新的顯示格式。

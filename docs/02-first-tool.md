@@ -21,7 +21,8 @@ cd /home/swenbao/桌面/mcp-lab
 最後一段結果應該是：
 
 ```text
-Server 回覆：tool：可以被呼叫的功能；呼叫時傳入參數，執行後取得結果。
+Server 回覆：
+tool：可以被呼叫的功能；呼叫時傳入參數，執行後取得結果。
 ```
 
 輸入格式中的 `term` 是參數名稱，`string` 表示文字，`required` 表示必填。先看懂這三個地方就好。

@@ -23,31 +23,32 @@ async def main(term: str, url: str | None = None) -> None:
     # 給 URL 時只連線，不啟動 server 子程序。
     target = url if url is not None else SERVER
     if url is not None:
-        print(f"透過 HTTP 連線：{url}")
+        print(f"\n透過 HTTP 連線：{url}")
     async with Client(target, read_timeout_seconds=10) as client:
         print(f"已連到 server，使用協議：{client.protocol_version}")
 
-        print("\n1. 問 server：你有哪些工具？（tools/list）")
+        print("\n1. 問 server：你有哪些工具？（tools/list）\n")
         listing = await client.list_tools()
         for tool in listing.tools:
             print(f"工具名稱：{tool.name}")
             print(f"用途：{tool.description}")
-            print(f"輸入格式：{json.dumps(tool.input_schema, ensure_ascii=False)}")
+            print(f"輸入格式：\n{json.dumps(tool.input_schema, ensure_ascii=False, indent=2)}")
 
         arguments = {"term": term}
-        print("\n2. 請 server 執行工具（tools/call）")
-        print(f"工具：lookup_term，參數：{json.dumps(arguments, ensure_ascii=False)}")
+        print("\n2. 請 server 執行工具（tools/call）\n")
+        print("工具：lookup_term")
+        print(f"參數：{json.dumps(arguments, ensure_ascii=False)}")
         result = await client.call_tool("lookup_term", arguments)
         for block in result.content:
             if isinstance(block, TextContent):
-                print(f"Server 回覆：{block.text}")
+                print(f"\nServer 回覆：\n{block.text}")
         if result.is_error:
             raise SystemExit("工具執行失敗，請看上方 server 回覆。")
 
     if url is None:
-        print("\n本次查詢結束，本機 server 已關閉。")
+        print("\n本次查詢結束，本機 server 已關閉。\n")
     else:
-        print("\n本次查詢結束，client 已離線；HTTP server 由另一個終端機繼續運行。")
+        print("\n本次查詢結束，client 已離線；HTTP server 由另一個終端機繼續運行。\n")
 
 
 if __name__ == "__main__":

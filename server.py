@@ -25,9 +25,9 @@ def lookup_term(term: str) -> str:
     print(f"[server] 收到查詢：{term!r}", file=sys.stderr, flush=True)
     key = term.strip().lower()
     if key in TERMS:
-        print("[server] 完成：找到資料", file=sys.stderr, flush=True)
+        print("[server] 完成：找到資料\n", file=sys.stderr, flush=True)
         return f"{key}：{TERMS[key]}"
-    print("[server] 完成：查無資料", file=sys.stderr, flush=True)
+    print("[server] 完成：查無資料\n", file=sys.stderr, flush=True)
     return f"找不到術語「{term}」。可查詢：{', '.join(TERMS)}"
 
 
