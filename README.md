@@ -16,6 +16,7 @@
 - [ ] 觀察一次實際的模型工具呼叫。
 - [x] 準備並驗證同一個工具的本機 HTTP 接法。
 - [ ] 使用者親手觀察 HTTP server 與 client 的獨立生命週期，再練習 WSI 服務整合。
+- [ ] 執行最小 LLM 決策 client，觀察直接回答與 MCP 工具呼叫。
 
 目前已可執行 stdio 與本機 HTTP demo，也已確認 Codex 能發現工具。接下來操作[本機 HTTP 實驗](docs/03-local-http.md)，後續方向見 [WSI 整合規劃](docs/wsi-integration-plan.md)。
 
@@ -49,6 +50,7 @@ client 會自行啟動、關閉本機 server。沒有使用語言模型或外部
 7. [接到 Codex：讓模型選工具](docs/04-use-in-codex.md)：登記本機 server，檢查實際工具呼叫。
 8. [WSI 整合方向](docs/wsi-integration-plan.md)：遠端服務、一般 API、MCP 與多服務協作的關係。
 9. [本機 HTTP 實驗](docs/03-local-http.md)：兩個終端機，觀察 server 獨立運行與 client 連線。
+10. [LLM 決策 client](docs/05-llm-client.md)：在本機 `.env` 填 key，讓模型決定是否呼叫工具。
 
 ## 第一個成果
 

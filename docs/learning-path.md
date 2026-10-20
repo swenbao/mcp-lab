@@ -11,6 +11,7 @@
 - 使用者已貼回 Codex `/mcp` 的 `mcp_lab: connected (1 tool)`，確認 host 連線與工具發現；真實模型工具呼叫仍待確認。
 - [Codex 操作](04-use-in-codex.md)可隨時完成；[本機 HTTP 實驗](03-local-http.md)已準備並驗證，待使用者親手操作。
 - 原有[第一課](01-mcp-basics.md)、[第二課](02-first-tool.md)保留作參考。完整 JSON-RPC 格式、resource、prompt 在用到時再補。
+- 使用者希望先在自己的 client 加入一點 LLM 決策，已準備[最小範例](05-llm-client.md)與本機 `.env`；先驗證單一工具的選擇，再沿用下方 WSI 整合路線。
 
 ## 1. 從 stdio 換成 HTTP（下一個實驗）
 

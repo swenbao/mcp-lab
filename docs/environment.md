@@ -8,6 +8,7 @@
 
 - Python：3.14.4；SDK 要求 Python 3.10 以上。
 - 官方套件：`mcp==2.3.0`，包含 `mcp-types==2.3.0`。
+- LLM 小範例新增：`openai==3.35.1`、`python-dotenv==1.2.4`。安裝時以既有鎖定清單限制版本，沒有升級原 MCP 依賴。
 - SDK 支援的最新協議：`2026-07-28`；實際 stdio client/server 連線也確認選用此版本。
 - 使用 v2 的 `MCPServer` 與 `Client`，不混入 v1 的 `FastMCP` / `ClientSession` 教學寫法。
 - 所有已解析的執行依賴版本記在根目錄 `requirements.lock`。這是本次 Linux / Python 3.14 環境的版本鎖定清單，不是跨平台相容保證或雜湊鎖檔。

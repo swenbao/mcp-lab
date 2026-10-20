@@ -154,3 +154,14 @@
 - 生命週期驗證通過：client 結束後 server 仍存活；停止 server 後 HTTP client 非零退出且無工具結果，沒有啟動替代 server。測試服務已清理。
 - 原 stdio CLI 以 banana 重跑成功，仍正常關閉子程序。新增 `docs/03-local-http.md` 與對應文件連結。
 - 尚未認定使用者已操作或理解本次實驗；下一步由使用者在兩個終端機啟動 server、查詢兩次、停止 server 後重試，並說明觀察。尚未公開部署或接入真實 WSI 系統。
+
+## 2026-10-20｜最小 LLM 決策 client
+
+- 使用者要求在 client 加入少量 LLM 決策，並先建立 `.env`，由使用者自行填入 OpenAI API key。
+- 已建立 key 留空、權限 600 的本機 `.env`，確認被 Git 忽略；公開範本為 `.env.example`。後續沒有讀取或輸出使用者填入的 key。
+- 使用 OpenAI Docs 核對 Responses API 的 function calling 流程與預設模型支援，新增 `llm_client.py`：從 MCP 取得工具描述 → 模型決定是否用工具 → 本機 client 執行 MCP 呼叫 → 結果交回模型整理答案。
+- 範例只提供 `lookup_term`，第一次 `tool_choice=auto`、最多一次工具呼叫；第二次 `tool_choice=none`，最多兩次 API 請求，停用自動重試。不加入 agent 框架或多輪聊天。
+- 預設 `OPENAI_MODEL=gpt-5.4-mini`，可在 `.env` 或 `--model` 調整；實際模型權限與 key 可用性尚未驗證。
+- 已安裝並鎖定 OpenAI SDK 3.35.1、python-dotenv 1.2.4；既有 MCP 2.3.0 與其他原依賴未升級，`pip check` 通過。
+- 測試使用真實本機 HTTP MCP server 與模擬 OpenAI HTTP 回覆，通過工具定義轉換、模型參數轉送、真實 banana 查詢、call ID 與工具結果回傳、最終答案；直接回答分支確認零工具呼叫，未知工具名稱確認拒絕執行。沒有讀取 `.env` 或呼叫真實 OpenAI API；測試 server 已清理。
+- 尚未確認真實模型決策或使用者理解；下一步由使用者填 key、啟動 HTTP server，再比較查術語與一般招呼的真實輸出。
