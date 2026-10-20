@@ -35,6 +35,10 @@ Server：tool：接受參數並執行功能的介面，例如查詢資料。
 6. client 結束後能正常清理 server 子程序；stdout 只有協議訊息。
 7. README 記錄確實測試成功的安裝與執行指令。
 
-## 後續再增加
+## 目前狀態與後續方向（2026-10-20）
 
-先讓支援 MCP 的 AI host 使用這個 tool；再加入 `glossary://all` resource 與 `quiz_term` prompt，最後才研究 Streamable HTTP。上述名稱是規劃，尚未實作。
+術語 demo 已實作並由使用者親手執行；使用者另加入 banana 作為第六筆資料。Codex 已顯示 server 連線成功、發現一個工具；實際模型工具呼叫仍待驗證。
+
+使用者提出真實目標：WSI agent 的服務部署與多服務整合。下一步沿用術語工具改成本機 Streamable HTTP，再做假的 WSI 工具、包裝真實 WSI 入口，逐步走向服務組合與團隊伺服器部署。完整規劃見[學習路線](learning-path.md)與[WSI 整合方向](wsi-integration-plan.md)。
+
+`glossary://all` resource 與 `quiz_term` prompt 保留為選修，不作為前往 WSI 整合的必經步驟。此時尚未實作 HTTP、WSI 工具或對外部署。

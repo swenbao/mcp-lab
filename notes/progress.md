@@ -127,3 +127,20 @@
 - 相容性檢查：既有 SDK 2.3.0 server 在另一條獨立連線中通過 `2025-11-25` 的 initialize → initialized → tools/list → tools/call → 正常退出；沒有混用不同協議的生命週期，也未變更依賴。
 - 尚未變更使用者層級 Codex 設定或啟動模型測試。真正的 host 連線與模型工具呼叫，需使用者操作後依紀錄確認，不能把設定存在或答案正確當作工具成功的證據。
 - 下一步：由使用者執行登記指令並在新的 Codex CLI 工作階段測試，貼回實際工具呼叫或連線錯誤。
+
+## 2026-10-20｜方向調整：WSI agent 服務部署與多服務整合
+
+### 使用者補充的目標與理解
+
+- 真實學習目標是把既有 WSI（Whole Slide Image）agent 提供為其他程式可呼叫的服務，未來部署到合作團隊伺服器，並可能和其他 agent／普通服務組合。
+- LINE Bot 是可能入口；中央統整程式或 agent 是可能的協調方式。其他服務種類、互叫流程、網路公開範圍均屬構想，尚未確認現有實作。
+- 使用者已自行推導：固定流程可直接用一般 API；MCP 可提供共同工具介面；client 不一定包含 LLM，腳本也能直接呼叫。
+- 本次釐清：`StdioServerParameters` 只保存啟動參數，進入 `async with Client(...)` 時 SDK 才啟動 server 子程序；HTTP server 則獨立常駐，client 連 URL。原始碼與官方 stdio／HTTP 規範已核對。
+- 需補準的邊界：MCP 不要求 server 後面一定有另一層 API，也不要求一個 agent 對應一個 server。系統可同時提供 server 介面與內含 client，但 MCP 不自動設計跨 agent 的工作流程、排程或部署。
+
+### 新進展與規劃
+
+- 討論中使用者貼回 Codex `/mcp` 清單，顯示 `mcp_lab: connected (1 tool)`，確認 host 連線與工具發現已成功；尚未貼回模型工具呼叫，未認定端到端模型操作完成。
+- 重整學習路線：本機 HTTP → 假 WSI 服務 → 包裝既有入口 → 依耗時需要設計工作狀態 → 多服務固定流程與模型選擇 → 團隊內網部署 → 使用者入口。
+- 新增 `docs/wsi-integration-plan.md`，保留架構構想、普通 API 與 MCP 的取捨、可直接呼叫 Python 函式／既有 API 的差異，以及需要取得的現有專案資料。
+- 本次只有文件變更；未修改 demo 程式、未實作 HTTP、未讀取真實 WSI 程式或病患影像、未對外開放服務。下一步先在本機以同一個術語工具觀察 HTTP server 的獨立生命週期。
