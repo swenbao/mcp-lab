@@ -107,3 +107,13 @@
 - 已檢查工作目錄差異，確認僅新增一筆 server 資料，client 未修改。以使用者實際執行輸出及檔案差異驗證本次練習。
 - 操作已完成；「新增資料與新增工具的差別」仍待使用者用自己的話解釋，不僅因程式成功就認定已理解。
 - 下一步：請使用者說明為什麼結果改變但工具數量不變，再進行新增第二個工具的練習。
+
+## 2026-10-20｜步驟 2e：確認資料／工具差別，討論工具描述的來源
+
+- 使用者已用自己的話正確解釋：`lookup_term` 查詢 `TERMS` 字典，新增 banana 只是增加資料；另外定義並登記工具函式，才會增加工具。第二課這部分的理解已確認。
+- 使用者接著提問：decorator 是否把函式包裝後送給 client，以及 client 如何知道有哪些工具。拼法修正為 `@mcp.tool()`。
+- 對照本機已安裝的官方 SDK 2.3.0 原始碼與官方 First steps 文件：decorator 在 server 載入函式定義時呼叫 `add_tool`，登記函式，並根據函式名稱、docstring、參數型別等產生工具描述。
+- `client.list_tools()` 可發出 MCP `tools/list` 請求；server 回傳名稱、用途、輸入格式等工具描述，SDK 再解析成 Python 物件供 client 程式使用。這份範例的首次清單查詢會向 server 取得描述。
+- 函式實作與 `TERMS` 資料留在 server；呼叫時 client 傳工具名稱和參數，server 找到已登記的函式並執行，再回傳結果。Python decorator 是 SDK 的便利寫法，並非 MCP 協議要求的語法。
+- 本次僅閱讀程式、更新學習紀錄與 README，沒有修改範例行為。上述工具發現機制仍待使用者確認理解；下一個最小觀察可由使用者修改工具 docstring，重跑後比較「用途」欄位，再新增第二個工具。
+- 來源：[官方 Python SDK First steps](https://py.sdk.modelcontextprotocol.io/get-started/first-steps/)，以及本機 SDK 的 `MCPServer.tool`、`ToolManager.add_tool`、`Tool.from_function`、`MCPServer.list_tools` 與 `Client.list_tools`。
