@@ -41,4 +41,4 @@ Server：tool：接受參數並執行功能的介面，例如查詢資料。
 
 使用者提出真實目標：WSI agent 的服務部署與多服務整合。下一步沿用術語工具改成本機 Streamable HTTP，再做假的 WSI 工具、包裝真實 WSI 入口，逐步走向服務組合與團隊伺服器部署。完整規劃見[學習路線](learning-path.md)與[WSI 整合方向](wsi-integration-plan.md)。
 
-`glossary://all` resource 與 `quiz_term` prompt 保留為選修，不作為前往 WSI 整合的必經步驟。此時尚未實作 HTTP、WSI 工具或對外部署。
+`glossary://all` resource 與 `quiz_term` prompt 保留為選修，不作為前往 WSI 整合的必經步驟。本機 HTTP 已準備並驗證，詳見[操作說明](03-local-http.md)；WSI 工具與對外部署尚未實作。

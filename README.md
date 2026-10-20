@@ -14,9 +14,10 @@
 - [x] 討論 SDK 如何登記工具，以及 client 如何取得工具描述。
 - [x] Codex 已連上 server，顯示一個工具。
 - [ ] 觀察一次實際的模型工具呼叫。
-- [ ] 將同一個工具改用本機 HTTP 呼叫，再練習 WSI 服務整合。
+- [x] 準備並驗證同一個工具的本機 HTTP 接法。
+- [ ] 使用者親手觀察 HTTP server 與 client 的獨立生命週期，再練習 WSI 服務整合。
 
-目前已可執行本機 stdio demo，也已確認 Codex 能發現工具。下一個主線實驗是本機 HTTP，後續方向見 [WSI 整合規劃](docs/wsi-integration-plan.md)。
+目前已可執行 stdio 與本機 HTTP demo，也已確認 Codex 能發現工具。接下來操作[本機 HTTP 實驗](docs/03-local-http.md)，後續方向見 [WSI 整合規劃](docs/wsi-integration-plan.md)。
 
 ## 先跑一次
 
@@ -47,6 +48,7 @@ client 會自行啟動、關閉本機 server。沒有使用語言模型或外部
 6. [第二課：找工具、用工具](docs/02-first-tool.md)：執行 demo，再親手改一筆資料。
 7. [接到 Codex：讓模型選工具](docs/04-use-in-codex.md)：登記本機 server，檢查實際工具呼叫。
 8. [WSI 整合方向](docs/wsi-integration-plan.md)：遠端服務、一般 API、MCP 與多服務協作的關係。
+9. [本機 HTTP 實驗](docs/03-local-http.md)：兩個終端機，觀察 server 獨立運行與 client 連線。
 
 ## 第一個成果
 

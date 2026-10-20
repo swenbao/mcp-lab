@@ -9,7 +9,7 @@
 - 已完成：本機 stdio server/client、列工具、呼叫工具、新增資料並說明資料與工具的差別。
 - 已討論：SDK 登記工具與產生描述；host 提供工具定義給模型。
 - 使用者已貼回 Codex `/mcp` 的 `mcp_lab: connected (1 tool)`，確認 host 連線與工具發現；真實模型工具呼叫仍待確認。
-- [Codex 操作](04-use-in-codex.md)可隨時完成；下一個服務整合主線實驗改為本機 HTTP。
+- [Codex 操作](04-use-in-codex.md)可隨時完成；[本機 HTTP 實驗](03-local-http.md)已準備並驗證，待使用者親手操作。
 - 原有[第一課](01-mcp-basics.md)、[第二課](02-first-tool.md)保留作參考。完整 JSON-RPC 格式、resource、prompt 在用到時再補。
 
 ## 1. 從 stdio 換成 HTTP（下一個實驗）

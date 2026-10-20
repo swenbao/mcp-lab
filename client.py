@@ -1,4 +1,4 @@
-"""啟動本機 server，取得工具清單，再呼叫一次工具。"""
+"""以 stdio 啟動 server，或用 HTTP 連到已啟動的 server，再呼叫工具。"""
 
 import argparse
 import asyncio
@@ -19,8 +19,12 @@ SERVER = StdioServerParameters(
 )
 
 
-async def main(term: str) -> None:
-    async with Client(SERVER, read_timeout_seconds=10) as client:
+async def main(term: str, url: str | None = None) -> None:
+    # 給 URL 時只連線，不啟動 server 子程序。
+    target = url if url is not None else SERVER
+    if url is not None:
+        print(f"透過 HTTP 連線：{url}")
+    async with Client(target, read_timeout_seconds=10) as client:
         print(f"已連到 server，使用協議：{client.protocol_version}")
 
         print("\n1. 問 server：你有哪些工具？（tools/list）")
@@ -40,11 +44,15 @@ async def main(term: str) -> None:
         if result.is_error:
             raise SystemExit("工具執行失敗，請看上方 server 回覆。")
 
-    print("\n本次查詢結束，本機 server 已關閉。")
+    if url is None:
+        print("\n本次查詢結束，本機 server 已關閉。")
+    else:
+        print("\n本次查詢結束，client 已離線；HTTP server 由另一個終端機繼續運行。")
 
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="透過 MCP 查詢術語")
     parser.add_argument("term", nargs="?", default="tool", help="要查詢的英文術語")
+    parser.add_argument("--url", help="HTTP MCP 網址；省略時使用原本的 stdio 接法")
     args = parser.parse_args()
-    asyncio.run(main(args.term))
+    asyncio.run(main(args.term, args.url))

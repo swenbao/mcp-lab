@@ -144,3 +144,13 @@
 - 重整學習路線：本機 HTTP → 假 WSI 服務 → 包裝既有入口 → 依耗時需要設計工作狀態 → 多服務固定流程與模型選擇 → 團隊內網部署 → 使用者入口。
 - 新增 `docs/wsi-integration-plan.md`，保留架構構想、普通 API 與 MCP 的取捨、可直接呼叫 Python 函式／既有 API 的差異，以及需要取得的現有專案資料。
 - 本次只有文件變更；未修改 demo 程式、未實作 HTTP、未讀取真實 WSI 程式或病患影像、未對外開放服務。下一步先在本機以同一個術語工具觀察 HTTP server 的獨立生命週期。
+
+## 2026-10-20｜本機 HTTP：準備並驗證獨立運行的 server
+
+- 使用者同意進入下一步。已重讀學習路線與 demo 計畫，並核對已鎖定 SDK 2.3.0 的實際 HTTP API 與官方 Client 文件，未變更依賴。
+- 新增 `server_http.py`，重用 `server.py` 的工具與資料，只綁定 `127.0.0.1`；預設埠 8000，可用 `--port` 調整。既有 stdio server 入口保留。
+- `client.py` 新增 `--url`：提供網址時連到 HTTP server，省略時仍依原設定啟動 stdio 子程序；工具發現與呼叫程式共用。
+- 實際 HTTP 驗證通過：協議 `2026-07-28`、工具清單與必填 term 格式、banana 回覆、從 `/tmp` 啟動，以及兩個獨立 client 同時查詢同一個 server。
+- 生命週期驗證通過：client 結束後 server 仍存活；停止 server 後 HTTP client 非零退出且無工具結果，沒有啟動替代 server。測試服務已清理。
+- 原 stdio CLI 以 banana 重跑成功，仍正常關閉子程序。新增 `docs/03-local-http.md` 與對應文件連結。
+- 尚未認定使用者已操作或理解本次實驗；下一步由使用者在兩個終端機啟動 server、查詢兩次、停止 server 後重試，並說明觀察。尚未公開部署或接入真實 WSI 系統。

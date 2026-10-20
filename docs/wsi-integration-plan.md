@@ -13,7 +13,7 @@ LINE Bot 是可能入口之一；其他 agent 的種類與實際串接流程尚�
 
 目前 `client.py` 的 `StdioServerParameters` 保存啟動設定；進入 `async with Client(SERVER, ...)` 時，SDK 才依設定啟動 server 子程序。兩個程序透過 stdin/stdout 溝通，client 結束時清理子程序。
 
-HTTP 模式下，server 由部署方獨立啟動、常駐。Client 只連到 MCP endpoint，例如 `http://127.0.0.1:8000/mcp`（示意網址，尚未建立）。Client 結束通常不會讓服務停止。服務可以處理多個 client 的請求，但真實分析的併發量仍由實作與資源決定。
+HTTP 模式下，server 由部署方獨立啟動、常駐。Client 只連到 MCP endpoint，例如本專案 HTTP demo 的 `http://127.0.0.1:8000/mcp`。Client 結束通常不會讓服務停止。服務可以處理多個 client 的請求，但真實分析的併發量仍由實作與資源決定。
 
 服務可先只開在本機，之後放到受控內網或 VPN，不必直接公開到網際網路。公網部署還需處理網路路由、TLS、存取驗證與服務維運；MCP 不代替這些工作。
 
